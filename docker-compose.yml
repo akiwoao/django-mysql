@@ -1,0 +1,43 @@
+version: "3.8"
+
+volumes:
+    mysqldata:
+
+services:
+    db:
+        image: mysql:5.7
+        container_name: db
+        restart: always
+        volumes:
+            # 初期データを投入するSQLが格納されているディレクトリ
+            - ./db/sql:/docker-entrypoint-initdb.d
+            # 永続化するときにマウントするディレクトリ
+            - mysqldata:/var/lib/mysql
+            - ./db/config:/etc/mysql/conf.d
+        ports:
+            - 3306:3306
+        environment:
+            MYSQL_DATABASE: main
+            MYSQL_USER: user
+            MYSQL_PASSWORD: password
+            MYSQL_ROOT_PASSWORD: password
+            TZ: "Asia/Tokyo"
+        command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+
+    app:
+        container_name: app
+        build:
+            context: .
+            dockerfile: ./docker/Dockerfile
+        volumes:
+            - ./app:/project
+        working_dir: /project
+        ports:
+            - 8000:8000
+        environment:
+            TZ: Asia/Tokyo
+        tty: true
+        stdin_open: true
+        depends_on:
+            - db
+        command: python3 manage.py runserver 0.0.0.0:8000
