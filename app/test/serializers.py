@@ -1,8 +1,7 @@
 from rest_framework import serializers
-from .models import User
+from .models import PRICES
 
 
-class UserSerializer(serializers.ModelSerializer):
+class PriceSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
-        fields = ['firstname', 'lastname']
+        model = PRICES
