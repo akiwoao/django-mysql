@@ -1,9 +1,17 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import TestOHLC
+from .models import Stock
+from .models import Price
+from .models import Predict
 
-class OHLCAdmin(admin.ModelAdmin):
+class StockAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'country')
+class PriceAdmin(admin.ModelAdmin):
+    list_display = ('date', 'open', 'high', 'low', 'close')
+class PredictAdmin(admin.ModelAdmin):
     list_display = ('date', 'open', 'high', 'low', 'close')
 
-admin.site.register(TestOHLC, OHLCAdmin)
+admin.site.register(Stock, StockAdmin)
+admin.site.register(Price, PriceAdmin)
+admin.site.register(Predict)

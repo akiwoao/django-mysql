@@ -1,7 +1,10 @@
 from rest_framework import serializers
-from .models import TestOHLC
-
+from .models import Stock
+from .models import Price
+from .models import Predict
 
 class APISerializer(serializers.ModelSerializer):
     class Meta:
-        model = TestOHLC
+        model = Stock
+        model = Price
+        model = Predict
