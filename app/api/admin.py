@@ -10,8 +10,8 @@ class StockAdmin(admin.ModelAdmin):
 class PriceAdmin(admin.ModelAdmin):
     list_display = ('date', 'open', 'high', 'low', 'close')
 class PredictAdmin(admin.ModelAdmin):
-    list_display = ('date', 'open', 'high', 'low', 'close')
+    list_display = ('date', 'predict', 'up_down', 'propriety')
 
 admin.site.register(Stock, StockAdmin)
 admin.site.register(Price, PriceAdmin)
-admin.site.register(Predict)
+admin.site.register(Predict, PredictAdmin)

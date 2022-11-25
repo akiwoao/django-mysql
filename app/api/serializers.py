@@ -1,10 +1,23 @@
 from rest_framework import serializers
-from .models import Stock
-from .models import Price
-from .models import Predict
+from .models import *
 
-class APISerializer(serializers.ModelSerializer):
+
+class PriceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Price
+        fields = ('date', 'open', 'high', 'low', 'close')
+
+
+class PredictSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Predict
+        fields = ('date', 'predict', 'up_down', 'propriety')
+
+
+class StockSerializer(serializers.ModelSerializer):
+    prices = PriceSerializer(many=True, read_only=True)
+    predicts = PredictSerializer(many=True, read_only=True)
+
     class Meta:
         model = Stock
-        model = Price
-        model = Predict
+        fields = ('id', 'name', 'country', 'prices', 'predicts')

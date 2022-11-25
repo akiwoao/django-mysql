@@ -1,9 +1,8 @@
 from rest_framework import viewsets
-from .models import Price
-from .serializers import APISerializer
+from .models import Stock
+from .serializers import StockSerializer
 
 
 class APIView(viewsets.ModelViewSet):
-
-    queryset = Price.objects.all()
-    serializer_class = APISerializer
+    queryset = Stock.objects.all()
+    serializer_class = StockSerializer

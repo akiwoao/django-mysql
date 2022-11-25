@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from api.models import Price,Predict,Stock
+from myapp.models import Price,Predict,Stock
 from datetime import datetime
 from django.utils.timezone import make_aware
 from decimal import *
