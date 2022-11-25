@@ -35,7 +35,7 @@ class Command(BaseCommand):
                     stock = Stock.id,
                     date = make_aware(datetime.strptime(row[0], '%Y/%m/%d')),
                     predict = float(row[1]) - 5,
-                    up_down = True,
+                    up_down = "up",
                     propriety = True
                 )
                 try:

@@ -18,9 +18,5 @@ class Predict(models.Model):
   stock = models.ForeignKey(Stock, on_delete=models.PROTECT, to_field="id")
   date = models.DateTimeField(auto_now=False, auto_now_add=False)
   predict = models.DecimalField(max_digits=20, decimal_places=2)
-  UP_DOWN_CHOICES = (
-        (True, '上昇'),
-        (False, '下降'),
-    )
-  up_down = models.BooleanField(choices=UP_DOWN_CHOICES)
+  up_down = models.CharField(max_length=10)
   propriety = models.BooleanField()
