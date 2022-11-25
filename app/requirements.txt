@@ -3,3 +3,5 @@ djangorestframework
 requests
 mysqlclient
 pandas
+beautifulsoup4
+apscheduler
