@@ -1,5 +1,5 @@
 from datetime import datetime, date
-from beautifulsoup4 import BeautifulSoup
+from bs4 import BeautifulSoup
 from apscheduler.schedulers.background import BackgroundScheduler
 
 def stock_data_scraping():

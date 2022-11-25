@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from myapp.models import Price,Predict,Stock
+from api.models import Price,Predict,Stock
 from datetime import datetime
 from django.utils.timezone import make_aware
 from decimal import *
@@ -23,16 +23,16 @@ class Command(BaseCommand):
         with open("nikkei_kun.csv", encoding="utf-8") as f:
             reader = csv.reader(f)
             for row in reader:
-                price = stock.price_set.create(
-                    stock = Stock.id,
+                price = Price(
+                    stock = stock,
                     date = make_aware(datetime.strptime(row[0], '%Y/%m/%d')),
                     open = float(row[1]),
                     high = float(row[2]),
                     low = float(row[3]),
                     close = float(row[4]),
                 )
-                predict = stock.predict_set.create(
-                    stock = Stock.id,
+                predict = Predict(
+                    stock = stock,
                     date = make_aware(datetime.strptime(row[0], '%Y/%m/%d')),
                     predict = float(row[1]) - 5,
                     up_down = "up",
