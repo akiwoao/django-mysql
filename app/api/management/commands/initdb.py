@@ -25,7 +25,7 @@ class Command(BaseCommand):
             for row in reader:
                 price = Price(
                     stock = stock,
-                    date = make_aware(datetime.strptime(row[0], '%Y/%m/%d')),
+                    date = datetime.strptime(row[0], '%Y/%m/%d'),
                     open = float(row[1]),
                     high = float(row[2]),
                     low = float(row[3]),
@@ -33,7 +33,7 @@ class Command(BaseCommand):
                 )
                 predict = Predict(
                     stock = stock,
-                    date = make_aware(datetime.strptime(row[0], '%Y/%m/%d')),
+                    date = datetime.strptime(row[0], '%Y/%m/%d'),
                     predict = float(row[1]) - 5,
                     up_down = "up",
                     propriety = True

@@ -15,7 +15,7 @@ class PredictSerializer(serializers.ModelSerializer):
 
 
 class StockSerializer(serializers.ModelSerializer):
-    prices = PriceSerializer(many=True, read_only=True)
+    prices = PriceSerializer(many=True)
     predicts = PredictSerializer(many=True, read_only=True)
 
     class Meta:

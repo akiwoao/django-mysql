@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 class Stock(models.Model):
@@ -8,7 +9,7 @@ class Stock(models.Model):
 
 class Price(models.Model):
   stock = models.ForeignKey(Stock, related_name='prices', on_delete=models.PROTECT)
-  date = models.DateTimeField(auto_now=False, auto_now_add=False)
+  date = models.DateField(default=timezone.now)
   open = models.DecimalField(max_digits=20, decimal_places=2)
   high = models.DecimalField(max_digits=20, decimal_places=2)
   low = models.DecimalField(max_digits=20, decimal_places=2)
@@ -16,7 +17,7 @@ class Price(models.Model):
 
 class Predict(models.Model):
   stock = models.ForeignKey(Stock, related_name='predicts', on_delete=models.PROTECT)
-  date = models.DateTimeField(auto_now=False, auto_now_add=False)
+  date = models.DateField(default=timezone.now)
   predict = models.DecimalField(max_digits=20, decimal_places=2)
   up_down = models.CharField(max_length=10)
   propriety = models.BooleanField()
