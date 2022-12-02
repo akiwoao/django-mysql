@@ -1,13 +1,19 @@
 from django.core.management.base import BaseCommand
-from api.models import Price,Predict,Stock
+from api.models import *
 from datetime import datetime
-from django.utils.timezone import make_aware
 from decimal import *
 from django.db import IntegrityError
 import csv
 import logging
+import random
 logger = logging.getLogger(__name__)
 
+def doSomething():
+    v = random.random()
+    if v > 0.5:
+        return True
+    else:
+        return False
 class Command(BaseCommand):
     def handle(self, *args, **options):
         # データベース全件削除
@@ -36,7 +42,7 @@ class Command(BaseCommand):
                     date = datetime.strptime(row[0], '%Y/%m/%d'),
                     predict = float(row[1]) - 5,
                     up_down = "up",
-                    propriety = True
+                    propriety = doSomething()
                 )
                 try:
                     price.save()
