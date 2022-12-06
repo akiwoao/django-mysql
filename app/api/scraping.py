@@ -10,6 +10,7 @@ yesterday_stock = soup.find('table', {'class': 'stock_kabuka_dwm'}).find('tbody'
 
 today = {'open': today_stock[0].text, 'high':today_stock[1].text, 'low':today_stock[2].text, 'close':today_stock[3].text}
 yesterday = {'open': yesterday_stock[0].text, 'high':yesterday_stock[1].text, 'low':yesterday_stock[2].text, 'close':yesterday_stock[3].text}
+print(today)
 print(yesterday)
 
 def stock_data_scraping():
