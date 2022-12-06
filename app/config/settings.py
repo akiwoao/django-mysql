@@ -11,10 +11,14 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+env = environ.Env()
+env.read_env(os.path.join(BASE_DIR,'.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -134,3 +138,6 @@ CORS_ORIGIN_WHITELIST = [
      'http://127.0.0.1:3000',
      'http://localhost:3000',
 ]
+
+# プロジェクトに使う変数
+SECURITY_CODE = env.list('SECURITY_CODE')
